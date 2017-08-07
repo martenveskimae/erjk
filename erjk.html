@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+
+<title>Erakondade rahastamine</title>
+<head>
+  <style>
+    body {
+      background: #ededed;
+      font-size: 11px;
+      font-family: "San Francisco", Helvetica, Arial, sans-serif;
+    }
+    .graphTitle {
+      font-size: 13px;
+    }
+    .y.axisGraph1 .tick line{
+      opacity: .05;
+    }
+    .y.axisGraph3 .tick line{
+      opacity: .05;
+    }
+    .y1.axisGraph3 .tick line{
+      opacity: .05;
+    }
+    .y.axisGraph4 .tick line{
+      opacity: .05;
+    }
+    .y1.axisGraph4 .tick line{
+      opacity: .05;
+    }
+    .domain {
+      fill: none;
+      stroke: none;
+    }
+    #axis {
+      font-size: 11px;
+      font-family: "San Francisco", Helvetica, Arial, sans-serif;
+    }
+    #container {
+      top: 30px;
+      margin-left:auto;
+      margin-right:auto;
+      position: relative;
+    }
+    #container2 {
+      margin-top: 50px;
+      position: absolute;
+    }
+    .canvas {
+      position: absolute;
+    }
+    select {
+      width: 170px;
+      position: absolute;
+    }
+    #tooltip {
+      color: white;
+      opacity: .95;
+      background: #333;
+      padding: 5px;
+      border: 1px solid lightgrey;
+      border-radius: 5px;
+      position: absolute;
+      z-index: 999;
+      visibility: hidden;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="graph1.js"></script>
+  <script src="graph2.js"></script>
+  <script src="graph3.js"></script>
+  <script src="graph4.js"></script>
+  <script src="graph5.js"></script>
+  <script src="graph6.js"></script>
+  <script src="graph7.js"></script>
+  <script src="graph8.js"></script>
+  <script src="graph9.js"></script>
+
+  <div id="tooltip"></div>
+  <div id="container">
+    <span class="graph1"></span>
+    <span class="graph2"></span>
+  </div>
+  <div id="container2" class="graph3">
+      <select class="selectParty" name="partyList">
+        <option value="" disabled="disabled">Erakonnad</option>
+      </select>
+      <select class="selectName" name="nameList">
+        <option value="" disabled="disabled">Isikud</option>
+      </select>
+  </div>
+
+  <script>
+
+  var EST = d3.locale({
+      "decimal": ".",
+      "thousands": ",",
+      "grouping": [3],
+      "currency": ["", "€"],
+      "dateTime": "%a %b %e %X %Y",
+      "date": "%m-%d-%Y",
+      "time": "%H:%M:%S",
+      "periods": ["AM", "PM"],
+      "days": ["Pühapäev", "Esmaspäev", "Teisipäev", "Kolmapäev", "Neljapäev", "Reede", "Laupäev"],
+      "shortDays": ["Pühap", "Esmasp", "Teisip", "Kolmap", "Neljap", "Reede", "Laup"],
+      "months": ["Jaanuar", "Veebruar", "Märts", "Aprill", "Mai", "Juuni", "Juuli", "August", "September", "Oktoober", "November", "Detsember"],
+      "shortMonths": ["Jaan", "Veebr", "Märts", "Apr", "Mai", "Juuni", "Juuli", "Aug", "Sep", "Okt", "Nov", "Dets"]
+    });
+
+    partyShow = [true, true, true, true, true, true];
+    partyArray = ["kesk", "ref", "irl", "sde", "vaba", "ekre"];
+    datearray = []; 
+    colorrange = [];
+
+    graph5("2015_tulud.txt", "blue", "graph1", 500, 200);
+    graph8("2015_tulud.txt", "blue", "graph1", 500, 200);
+    graph6("2015_kulud2.txt", "blue", "graph1", 500, 200);
+    graph9("2015_kulud2.txt", "blue", "graph1", 500, 200);
+    graph7("2015_tulud-kulud.txt", "blue", "graph1", 500, 200);
+    graph1("annetused.txt", "party", "graph2", 1000, 200);
+    //graph3("annetused.txt", "party", "graph2", 1000, 200);
+    graph4("annetused.txt", "party", "graph2", 1000, 200);
+    graph2("annetused.txt", "party", "graph3", 1000, 180);
+  </script>
+</body>
+</html>
